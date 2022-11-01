@@ -3,7 +3,7 @@ from setuptools import find_packages, setup
 
 HERE = pathlib.Path(__file__).parent
 
-VERSION = '1.0.0'
+VERSION = '1.0.1'
 PACKAGE_NAME = 'python_easy_facebook_api'
 AUTHOR = 'Seokku'
 AUTHOR_EMAIL = ''

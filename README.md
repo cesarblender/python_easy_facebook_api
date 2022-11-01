@@ -100,7 +100,7 @@ print(response.json())
 # Example:
 class MyCustomPost(FacebookService):
     def __init__(self, ...):
-        Facebook.__init__(
+        FacebookService.__init__(
             self,
             custom_endpoint="..."
             # ...
