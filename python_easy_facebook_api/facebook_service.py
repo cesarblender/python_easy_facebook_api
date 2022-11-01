@@ -13,6 +13,8 @@ class FacebookService():
             self.api_action = 'feed'
         elif request_type == RequestType.PHOTO_POST or request_type == RequestType.TEXT_WITH_PHOTO_POST:
             self.api_action = 'photos'
+        elif request_type == RequestType.VIDEO_POST:
+            self.api_action = 'videos'
 
         if custom_endpoint is not None:
             self.api_action = custom_endpoint
@@ -34,4 +36,3 @@ class FacebookService():
         response = requests.post(self.api_route, data=payload)
 
         return response
-

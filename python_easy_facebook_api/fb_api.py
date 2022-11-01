@@ -1,6 +1,7 @@
 from .photo_post import PhotoPost
 from .text_post import TextPost
 from .text_with_photo_post import TextWithPhotoPost
+from .video_post import VideoPost
 
 
 class FbApi():
@@ -24,3 +25,6 @@ class FbApi():
             post_content=content,
             post_image_url=image_url
         )
+
+    def video_post(self, url="", title=""):
+        return VideoPost(self.page_id, access_token=self.access_token, video_url=url, video_title=title)
