@@ -35,18 +35,3 @@ class FacebookService():
 
         return response
 
-
-# # POST: https://graph.facebook.com/<page_id>/<custom_endpoint>
-# custom_request = FacebookService(
-#     access_token="",
-#     page_id="",
-#     custom_endpoint="feed"
-# )
-
-# response = custom_request.submit_request(
-#     {
-#         'message': 'hi'
-#     }
-# )
-
-# print(response.text)

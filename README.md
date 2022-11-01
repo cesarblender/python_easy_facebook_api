@@ -24,7 +24,7 @@ api = FbApi(
 ### To add a Text Post
 
 ```
-post = api.TextPost(
+post = api.text_post(
     content="<your post content>"
 )
 ```
@@ -32,7 +32,7 @@ post = api.TextPost(
 ### To add a Photo Post
 
 ```
-post = api.PhotoPost(
+post = api.photo_post(
     # You can use any framework or library like Flask or Django to store your image and upload to facebook
     # Example:
     # image_url="https://example.com/image.jpg"
@@ -43,7 +43,7 @@ post = api.PhotoPost(
 ### To add a Text with Photo Post
 
 ```
-post = api.TextWithPhotoPost(
+post = api.text_with_photo_post(
     content="<your post content>"
     image_url="<your image url>"
 )
@@ -52,10 +52,66 @@ post = api.TextWithPhotoPost(
 ### Submitting the post
 ```
 # Makes the POST request to the Facebook Graph API
-response = post.submitPost()
+response = post.submit_post()
 
 # Prints the id of the post, or instead, if you had an error with the `access token` or with the `page id` it will show the error details
-print(response.text)
+print(response.json())
+```
+
+## Use custom endpoints
+
+To use custom endpoints you can import the class `FacebookService`
+
+```
+from python_facebook_easy_api import FacebookService
+
+"""
+At the moment, this library only make post requests, but it's planned add support to all methods
+
+Example:
+POST - https://graph.facebook.com/<page_id>/<custom_endpoint>
+payload: {
+    # The rest of the body
+    **body,
+    'access_token': access_token
+}
+"""
+
+custom_endpoint = FacebookService(
+    access_token="<your access token>",
+    page_id="<your page id>",
+    custom_endpoint="<the facebook graph api endpoint>" # Example: feed
+)
+
+# This creates a post with the text "hi"
+response = custom_request.submit_request(
+    {
+        'message': 'hi'
+    }
+)
+
+print(response.json())
+```
+
+```
+# ...
+
+# Else you can create your own class extending the facebook service
+# Example:
+class MyCustomPost(FacebookService):
+    def __init__(self, ...):
+        Facebook.__init__(
+            self,
+            custom_endpoint="..."
+            # ...
+        )
+
+    def submit_post(self):
+        body = {
+            # ...
+        }
+
+        self.submit_request(body)
 ```
 
 ## Getting the Access Token
